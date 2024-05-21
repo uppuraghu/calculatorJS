@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+        height: 60px;
+        width: 60px;
+        border-radius: 30px;
+        margin: 4px;
+        font-size: 20px;
+        cursor: pointer;
+        
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+    body{
+        background: linear-gradient(to bottom right, rgba(79, 51, 176, 1), rgba(210, 53, 165, 1));
+        height: 85vh;
+    }
+    /* .icon{
+      font-size: 30px;
+   
+    } */
+    /* .icon1{
+        
+        font-size: 30px;
+     
+      
+    }  */
+
+</style>
+<body  >
+    <div class="main" >
+        <div class="main1">
+            <div class="icon" >
+                <i class="icon1" ></i>
+            </div>
+            <div class="display1">
+                <div style="height: 120px;" id="display"></div>
+                <div class="buttons">
+                    <table>
+                        <tr>
+                            <td><button  class="btn" id="clear">C</button></td>
+                            <td><button class="btn" id="/">&divide;</button></td>
+                            <td><button class="btn" id="*">&times;</button></td>
+                            <td><button class="btn" id="back">X</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="number" id="7">7</button></td>
+                            <td><button class="number" id="8">8</button></td>
+                            <td><button class="number" id="9">9</button></td>
+                            <td><button class="btn" id="-">-</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="number" id="4">4</button></td>
+                            <td><button class="number" id="5">5</button></td>
+                            <td><button class="number" id="6">6</button></td>
+                            <td><button class="btn" id="+">+</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="number" id="1">1</button></td>
+                            <td><button class="number" id="2">2</button></td>
+                            <td><button class="number" id="3">3</button></td>
+                            <td rowspan="2"><button style="height: 120px;" class="btnq" id="equal">=</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn" id="(">(</button></td>
+                            <td><button class="number" id="0">0</button></td>
+                            <td><button class="btn" id=")">)</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.querySelector("#display");
+        display.style.color="white"
+        display.style.fontSize="40px"
+        const buttons = document.querySelectorAll("button");
+        
+        let mainn=document.getElementsByClassName("main")[0]
+        mainn.style.border="3px solid black";
+        mainn.style.width="290px"
+        // mainn.style.backgroundColor="linear-gradient(to bottom right,rgba(79,51,176,1),rgba(210,53,165)); "
+        mainn.style.borderRadius="10px"
+        mainn.style.marginLeft="550px"
+        mainn.style.marginTop="100px"
+        mainn.style.boxShadow="1px 15px 55px 5px black"
+        mainn.style.backgroundColor="black"
+
+    
+        // let xxx=document.getElementsByTagName("tr")[0]
+        // xxx.style.height="200px"
+        // xxx.style.width="100px"
+        
+        
+
+        buttons.forEach((item) => {
+            item.onclick = () => {
+                if (item.id == "clear") {
+                    display.innerText = "";
+                } else if (item.id == "back") {
+                    let string = display.innerText.toString();
+                    display.innerText = string.substr(0, string.length - 1);
+                } else if (display.innerText != "" && item.id == "equal") {
+                    try {
+                        display.innerText = eval(display.innerText);
+                    } catch {
+                        display.innerText = "Error";
+                        setTimeout(() => (display.innerText = ""), 2000);
+                    }
+                } else if (display.innerText == "" && item.id == "equal") {
+                    display.innerText = "Empty!";
+                    setTimeout(() => (display.innerText = ""), 2000);
+                } else {
+                    display.innerText += item.id;
+                }
+            }
+        });
+
+        const iconz = document.querySelector(".icon");
+       
+        const mainz = document.querySelector(".main1");
+        const iconzx = document.querySelector(".icon1");
+        
+        let isDark = true;
+
+        iconz.onclick = () => {
+            mainz.classList.toggle("dark");
+            iconz.classList.toggle("active");
+            isDark = !isDark;
+        }
+    </script>
+</body>
+</html>
